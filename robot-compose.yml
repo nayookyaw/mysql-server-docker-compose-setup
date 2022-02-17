@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+  mysql-db:
+    image: mysql:8.0
+    stdin_open: true
+    container_name: yourcontainer-name
+    restart: always
+    ports:
+      - "3306:3306"
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+    environment:
+      MYSQL_DATABASE: yourdb
+      MYSQL_ROOT_PASSWORD: yourpassword
+      MYSQL_USER: yourusername
+      MYSQL_PASSWORD: yourpassword
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro # local path : docker path
+      - "/etc/timezone:/etc/timezone:ro" # datetime fix
+      - "/etc/localtime:/etc/localtime:ro" # datetime fix
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
