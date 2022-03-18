@@ -3,17 +3,19 @@ services:
   mysql-db:
     image: mysql:8.0
     stdin_open: true
-    container_name: yourcontainer-name
+    container_name: robot-db
     restart: always
     ports:
       - "3306:3306"
+    command:
+    - --sql_mode=
     cap_add:
       - SYS_NICE  # CAP_SYS_NICE
     environment:
-      MYSQL_DATABASE: yourdb
-      MYSQL_ROOT_PASSWORD: yourpassword
-      MYSQL_USER: yourusername
-      MYSQL_PASSWORD: yourpassword
+      MYSQL_DATABASE: robotdb
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      MYSQL_USER: user
+      MYSQL_PASSWORD: P@ssw0rd
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro # local path : docker path
       - "/etc/timezone:/etc/timezone:ro" # datetime fix
