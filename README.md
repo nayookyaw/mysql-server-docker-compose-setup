@@ -3,10 +3,10 @@
     nayookyaw.nok@gmail.com
 
 # Build container
-- $ docker-compose -f robot-compose.yml build
+- $ docker-compose build
 
 # Running container
-- $ docker-compose -f robot-compose.yml up
+- $ docker-compose up
 
 # Stop container
-- $ docker-compose -f robot-compose.yml down
+- $ docker-compose down
